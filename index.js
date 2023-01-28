@@ -54,7 +54,6 @@ app.get('/', function (req, res) {
 app.get('/excel', function (req, res) {
   deleteFile(`${formattedDate}-danugarri-schedule.xlsx`);
   wb.write(`${formattedDate}-danugarri-schedule.xlsx`, res);
-  // populateCells();
 });
 app.post('/', async function (req, res) {
   populateCellsPost(req.body);
