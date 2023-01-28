@@ -52,12 +52,12 @@ app.get('/', function (req, res) {
   res.redirect('/excel');
 });
 app.get('/excel', function (req, res) {
-  deleteFile(`${formattedDate}-danugarri-schedule.xlsx`);
-  wb.write(`${formattedDate}-danugarri-schedule.xlsx`, res);
+  deleteFile(`${formattedDate}-danugarri-pets.xlsx`);
+  wb.write(`${formattedDate}-danugarri-pets.xlsx`, res);
 });
 app.post('/', async function (req, res) {
   populateCellsPost(req.body);
-  wb.write(`generated-file/${formattedDate}-danugarri-schedule.xlsx`);
+  wb.write(`generated-file/${formattedDate}-danugarri-pets.xlsx`);
   // res.send({ data: `https://${req.hostname}/excel` });
   res.send({ data: `${req.protocol}://${req.hostname}:${port}/excel` });
   // const data1 = { data: `http://localhost:5000` };
