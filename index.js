@@ -2,7 +2,7 @@
 const express = require('express');
 const { headers } = require('./consts');
 const { getDate } = require('./helpers/getDate');
-const { getStyles, getCustomStyle } = require('./set-up/excel-styles');
+const { getStyles } = require('./set-up/excel-styles');
 const { getExcel } = require('./set-up/set-up');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -27,31 +27,23 @@ app.listen(port, function () {
   console.log('App listening on port 5000!');
 });
 
-const populateCellsPost = (data, employeesList) => {
+const populateCellsPost = (data) => {
   let counter = 1;
-  data.forEach(async (employee) => {
-    try {
-      const employeeNameCellsStyle = await getCustomStyle(employee['Employee'], employeesList);
-      counter++;
-      let index = 0;
-      for (const property in employee) {
-        index++;
-        //  write headers
-        ws.cell(1, index)
-          .string(headers[index - 1])
-          .style(headerStyle);
-        // Write cells
-        if (typeof employee[property] === 'string') {
-          ws.cell(counter, index).string(employee[property]).style(cellsStyle);
-          if (employee['Employee']) {
-            ws.cell(counter, index).string(employee['Employee']).style(employeeNameCellsStyle);
-          }
-        } else {
-          ws.cell(counter, index).number(employee[property]).style(cellsStyle);
-        }
+  [data].forEach((pet) => {
+    counter++;
+    let index = 0;
+    for (const property in pet) {
+      index++;
+      //  write headers
+      ws.cell(1, index)
+        .string(headers[index - 1])
+        .style(headerStyle);
+      // Write cells
+      if (typeof pet[property] === 'string') {
+        ws.cell(counter, index).string(pet[property]).style(cellsStyle);
+      } else {
+        ws.cell(counter, index).number(pet[property]).style(cellsStyle);
       }
-    } catch (e) {
-      console.log(e);
     }
   });
 };
