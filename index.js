@@ -7,7 +7,7 @@ const { getExcel } = require('./set-up/set-up');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const { deleteFile } = require('./helpers/deleteFile');
+// const { deleteFile } = require('./helpers/deleteFile');
 
 const app = express();
 app.use(bodyParser.json());
@@ -52,7 +52,7 @@ app.get('/', function (req, res) {
   res.redirect('/excel');
 });
 app.get('/excel', function (req, res) {
-  deleteFile(`${formattedDate}-danugarri-pets.xlsx`);
+  // deleteFile(`${formattedDate}-danugarri-pets.xlsx`);
   wb.write(`${formattedDate}-danugarri-pets.xlsx`, res);
 });
 app.post('/', async function (req, res) {
