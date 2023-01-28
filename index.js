@@ -52,7 +52,7 @@ app.get('/', function (req, res) {
 app.get('/excel', function (req, res) {
   wb.write(`${formattedDate}-danugarri-pets.xlsx`, res);
 });
-app.post('/', async function (req, res) {
+app.post('/', function (req, res) {
   populateCellsPost(req.body);
   wb.write(`generated-file/${formattedDate}-danugarri-pets.xlsx`);
   res.send({ data: `https://${req.hostname}/excel` });
