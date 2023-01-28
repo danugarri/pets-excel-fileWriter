@@ -6,7 +6,7 @@ const getExcel = () => {
   const wb = new xl.Workbook();
 
   // Add Worksheets to the workbook
-  const ws = wb.addWorksheet('Horario');
+  const ws = wb.addWorksheet('Mascotas');
 
   return { wb, ws };
 };
